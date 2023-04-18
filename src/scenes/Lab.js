@@ -1,10 +1,14 @@
 import { Scene } from "phaser";
 import { CONFIG } from "../config";
+import Player from "../entites/Player"
 
 export default class Lab extends Scene {
   /**@type {Phaser.Tilemaps.Tilemap} */
   map;
   layers;
+
+  /**@type {Player} */
+  player
 
   constructor(){
     super('Lab');
@@ -16,13 +20,21 @@ export default class Lab extends Scene {
 
     // Carregar os tilessets do map (as imagens)
     this.load.image('tiles-office', 'mapas/tiles/tiles_office.png')
+
+    // Importando um spritesheet
+    this.load.spritesheet('player', 'carlos.png', {
+      frameWidth: CONFIG.TILE_SIZE,
+      frameHeight: CONFIG.TILE_SIZE * 2
+    })
   }
 
   create(){
     this.createMap()
     this.createLayers()
     
+    this.player = new Player(this, 100, 90)
 
+    this.createCamera()
 
   }
 
@@ -54,7 +66,17 @@ export default class Lab extends Scene {
     this.map.createLayer('abaixo 3', [tilesOffice], 0, 0)
     this.map.createLayer('acima', [tilesOffice], 0, 0)
 
-
+    
   }
+
+  createCamera(){
+
+    const mapWidth = this.map.width * CONFIG.TILE_SIZE;
+    const mapHeight = this.map.height * CONFIG.TILE_SIZE;
+
+    this.cameras.main.setBounds(0, 0, mapWidth, mapHeight)
+    this.cameras.main.startFollow(this.player)
+  }
+
 
 }

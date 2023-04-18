@@ -9,13 +9,13 @@ const config = {
   height: CONFIG.GAME_HEIGHT,
   type: AUTO,
   scene: [Lab],
-  physycs: {
+  physics: {
     default: 'arcade',
     arcade: {
       gravity: {
         y: 0
       },
-      debug: true
+      debug: false
     }
   },
   pixelArt: true,
