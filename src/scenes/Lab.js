@@ -5,10 +5,11 @@ import Player from "../entites/Player"
 export default class Lab extends Scene {
   /**@type {Phaser.Tilemaps.Tilemap} */
   map;
-  layers;
 
   /**@type {Player} */
-  player
+  player;
+
+  layers = {};
 
   constructor(){
     super('Lab');
@@ -33,7 +34,7 @@ export default class Lab extends Scene {
     this.createLayers()
     
     this.player = new Player(this, 100, 90)
-
+    this.player.setDepth(2)
     this.createCamera()
 
   }
@@ -56,7 +57,7 @@ export default class Lab extends Scene {
     this.map.addTilesetImage('tiles_office', 'tiles-office')
   }
 
-  createLayers(){
+  createLayersManual(){
     // Pegando os tilessers
     const tilesOffice = this.map.getTileset('tiles_office') // Nome no tiles
 
@@ -65,8 +66,21 @@ export default class Lab extends Scene {
     this.map.createLayer('abaixo 1', [tilesOffice], 0, 0)
     this.map.createLayer('abaixo 3', [tilesOffice], 0, 0)
     this.map.createLayer('acima', [tilesOffice], 0, 0)
+  }
 
-    
+  createLayers(){
+    // Pegando os tilessers
+    const tilesOffice = this.map.getTileset('tiles_office') // Nome no tiles
+
+    const layersNames = this.map.getTileLayerNames();
+    for (let i = 0; i < layersNames.length; i++) {
+      const name = layersNames[i];
+      this.layers[name] = this.map.createLayer(name, [tilesOffice], 0, 0)
+      // Define a profundidade de cada camada
+      this.layers[name].setDepth( i);
+      
+    }
+    console.log(this.layers);
   }
 
   createCamera(){

@@ -54,10 +54,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
 
     this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this)
 
-    //this.play('idle-right')
-    //this.play('idle-up')
+    this.play('idle-right')
+    this.play('idle-up')
     this.play('idle-left')
-    //this.play('idle-down')
+    this.play('idle-down')
   }
 
   initAnimations(){
@@ -68,26 +68,50 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
       frameRate: this.frameRate,
       repeat: -1
     })
-
     this.anims.create({
       key: 'idle-up',
       frames: this.anims.generateFrameNumbers('player', { start: 10, end: 15 }), 
       frameRate: this.frameRate,
       repeat: -1
     })
-
     this.anims.create({
       key: 'idle-left',
       frames: this.anims.generateFrameNumbers('player', { start: 16, end: 21 }), 
       frameRate: this.frameRate,
       repeat: -1
     })
-
     this.anims.create({
       key: 'idle-down',
       frames: this.anims.generateFrameNumbers('player', { start: 22, end: 27 }), 
       frameRate: this.frameRate,
       repeat: -1
     })
+
+    // walk
+    this.anims.create({
+      key: 'walk-right',
+      frames: this.anims.generateFrameNumbers('player', { start: 28, end: 33 }), 
+      frameRate: this.frameRate,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'walk-up',
+      frames: this.anims.generateFrameNumbers('player', { start: 34, end: 39 }), 
+      frameRate: this.frameRate,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'walk-left',
+      frames: this.anims.generateFrameNumbers('player', { start: 40, end: 45 }), 
+      frameRate: this.frameRate,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'walk-down',
+      frames: this.anims.generateFrameNumbers('player', { start: 46, end: 51 }), 
+      frameRate: this.frameRate,
+      repeat: -1
+    })
+
   }
 }
