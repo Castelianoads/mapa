@@ -245,7 +245,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 466, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -288,7 +288,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 527, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1515,6 +1515,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"chair"
                         }]
                 }, 
                 {
@@ -1660,6 +1665,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"chair"
                         }]
                 }, 
                 {
@@ -3933,6 +3943,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"chair"
                         }]
                 }, 
                 {
@@ -3942,6 +3957,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"chair"
                         }]
                 }, 
                 {
@@ -4829,6 +4849,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"table"
                         }]
                 }, 
                 {
@@ -4838,6 +4863,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"table"
                         }]
                 }, 
                 {
@@ -4847,6 +4877,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"table"
                         }]
                 }, 
                 {
@@ -4964,7 +4999,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -4973,7 +5013,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -4982,7 +5027,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -4991,7 +5041,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -5000,7 +5055,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"plate"
                         }]
                 }, 
                 {
@@ -5009,7 +5069,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"plate"
                         }]
                 }, 
                 {
@@ -5109,7 +5174,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -5118,7 +5188,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -5127,7 +5202,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -5136,7 +5216,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"trash"
                         }]
                 }, 
                 {
@@ -5145,7 +5230,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"plate"
                         }]
                 }, 
                 {
@@ -5154,7 +5244,12 @@
                         {
                          "name":"collide",
                          "type":"bool",
-                         "value":false
+                         "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"plate"
                         }]
                 }, 
                 {
@@ -7464,6 +7559,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"frame"
                         }]
                 }, 
                 {
@@ -7473,6 +7573,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"frame"
                         }]
                 }, 
                 {
@@ -7482,6 +7587,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"frame"
                         }]
                 }, 
                 {
@@ -7609,6 +7719,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"frame"
                         }]
                 }, 
                 {
@@ -7618,6 +7733,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"frame"
                         }]
                 }, 
                 {
@@ -7627,6 +7747,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"frame"
                         }]
                 }, 
                 {
@@ -8008,6 +8133,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8017,6 +8147,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8026,6 +8161,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8035,6 +8175,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8044,6 +8189,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8053,6 +8203,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8062,6 +8217,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8071,6 +8231,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8153,6 +8318,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8162,6 +8332,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8171,6 +8346,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8180,6 +8360,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8189,6 +8374,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8198,6 +8388,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8207,6 +8402,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8216,6 +8416,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8297,6 +8502,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8306,6 +8516,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 },
             
@@ -8316,6 +8531,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8325,6 +8545,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8334,6 +8559,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8343,6 +8573,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8352,6 +8587,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8361,6 +8601,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8442,6 +8687,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8451,6 +8701,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8460,6 +8715,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8469,6 +8729,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 },
             
@@ -8479,6 +8744,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8488,6 +8758,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8497,6 +8772,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8506,6 +8786,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8587,6 +8872,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8596,6 +8886,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8605,6 +8900,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8614,6 +8914,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8623,6 +8928,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8632,6 +8942,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 },
             
@@ -8642,6 +8957,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":false
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8651,6 +8971,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8732,6 +9057,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8741,6 +9071,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8750,6 +9085,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8759,6 +9099,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8768,6 +9113,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8777,6 +9127,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8786,6 +9141,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 }, 
                 {
@@ -8795,6 +9155,11 @@
                          "name":"collide",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"wall"
                         }]
                 },
             

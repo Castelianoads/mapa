@@ -9,6 +9,7 @@ export default class Lab extends Scene {
 
   /**@type {Player} */
   player;
+  playerCollision = [];
   touch;
   layers = {};
 
@@ -40,7 +41,8 @@ export default class Lab extends Scene {
   }
 
   update(){
-
+   
+    
   }
 
 
@@ -77,13 +79,19 @@ export default class Lab extends Scene {
       const name = layersNames[i];
       this.layers[name] = this.map.createLayer(name, [tilesOffice], 0, 0)
       // Define a profundidade de cada camada
-      this.layers[name].setDepth( i);
+      this.layers[name].setDepth(i);
 
       // Verifica se o layer possui colisao
       if(name.endsWith('Collision')){
-        console.log(name)
         this.layers[name].setCollisionByProperty({ collide: true })
 
+        // Adiciona a função de callback para cada tile colidível
+        this.layers[name].setTileIndexCallback(0, this, (sprite, tile) => {
+            console.log(`Collided with ${tile.properties.object}, ${sprite}`);
+          }
+        );
+
+        // Mostrar em amarelo os objetos que pode colidir
         if ( CONFIG.DEBUG_COLLISION ) {
           const debugGraphics = this.add.graphics().setAlpha(0.75).setDepth(i);
           this.layers[name].renderDebug(debugGraphics, {
@@ -95,7 +103,6 @@ export default class Lab extends Scene {
       }
       
     }
-    console.log(this.layers);
   }
 
   createCamera(){
@@ -109,9 +116,7 @@ export default class Lab extends Scene {
   createPlayer(){
     this.touch = new Touch(this, 16*8, 16*5)
     this.player = new Player(this, 16*8, 16*5, this.touch)
-    this.player.setDepth(2)
-
-    
+    this.player.setDepth(2)    
   }
 
   createColliders(){
@@ -121,9 +126,14 @@ export default class Lab extends Scene {
       
       if(name.endsWith('Collision')){
         this.physics.add.collider(this.player, this.layers[name])
+        this.physics.overlap(this.player, this.layers[name], this.Collided, null, this);
+
+        console.log(name, this.layers[name])
       }
     }
   }
 
-
+  Collided(){
+    console.log('Collided');
+  }
 }
