@@ -37,11 +37,9 @@ export default class Lab extends Scene {
     this.createPlayer()
     this.createCamera()
     this.createColliders()
-
   }
 
   update(){
-   
     
   }
 
@@ -73,13 +71,23 @@ export default class Lab extends Scene {
   createLayers(){
     // Pegando os tilessers
     const tilesOffice = this.map.getTileset('tiles_office') // Nome no tiles
-
     const layersNames = this.map.getTileLayerNames();
+
+    //console.log(this.tilesOffice.getTileAt());
+
+    // const prop = tilesOffice.getTileProperties(0)
+    // if (prop.hasOwnProperty('name')) {
+    //   const propValue = properties['name'];
+    //   console.log(propValue); // Exibe o valor da propriedade
+    // }
+
     for (let i = 0; i < layersNames.length; i++) {
       const name = layersNames[i];
       this.layers[name] = this.map.createLayer(name, [tilesOffice], 0, 0)
       // Define a profundidade de cada camada
       this.layers[name].setDepth(i);
+
+      console.log(this.layers);
 
       // Verifica se o layer possui colisao
       if(name.endsWith('Collision')){
@@ -87,7 +95,7 @@ export default class Lab extends Scene {
 
         // Adiciona a função de callback para cada tile colidível
         this.layers[name].setTileIndexCallback(0, this, (sprite, tile) => {
-            console.log(`Collided with ${tile.properties.object}, ${sprite}`);
+            //console.log(`Collided with ${tile.properties.object}, ${sprite}`);
           }
         );
 
@@ -125,10 +133,10 @@ export default class Lab extends Scene {
       const name = layersNames[i];
       
       if(name.endsWith('Collision')){
-        this.physics.add.collider(this.player, this.layers[name])
-        this.physics.overlap(this.player, this.layers[name], this.Collided, null, this);
+        this.physics.add.collider(this.player, this.layers[name], this.Collided(), null, this)
+        //this.physics.overlap(this.player, this.layers[name], this.Collided, null, this);
 
-        console.log(name, this.layers[name])
+        //console.log(name, this.layers[name])
       }
     }
   }
