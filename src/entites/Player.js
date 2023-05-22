@@ -33,10 +33,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
 
     this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this)
 
-    //this.play('idle-right')
-    //this.play('idle-up')
-    //this.play('idle-left')
-    //this.play('idle-down')
+    this.play('idle-right');
+    this.play('idle-up');
+    this.play('idle-left');
+    this.play('idle-down');
+    this.play('walk-right');
+    this.play('walk-up');
+    this.play('walk-left');
+    this.play('walk-down');
   }
   
   update(){
@@ -62,8 +66,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
       this.setVelocityY(0)
     }
 
-    if(space.isDown){
-      console.log("ESPACO");
+    if(space.isDown) {
+      this.isAction = true;
+    } else {
+      this.isAction = false;
     }
     
     if(this.body.velocity.x === 0 && this.body.velocity.y === 0){ // esta parado
@@ -283,32 +289,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
       repeat: -1
     });
     
-    // Fire
-    this.anims.create({
-      key: 'fire-right',
-      frames: this.anims.generateFrameNumbers('player', {start: 216,end:218 }),
-      frameRate: this.frameRate,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'fire-up',
-      frames: this.anims.generateFrameNumbers('player', {start: 219,end:221 }),
-      frameRate: this.frameRate,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'fire-left',
-      frames: this.anims.generateFrameNumbers('player', {start: 222,end:224 }),
-      frameRate: this.frameRate,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'fire-down',
-      frames: this.anims.generateFrameNumbers('player', {start: 225,end:227 }),
-      frameRate: this.frameRate,
-      repeat: -1
-    });
-  
     // Damage
     this.anims.create({
       key: 'fire-right',

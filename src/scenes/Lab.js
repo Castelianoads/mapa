@@ -13,6 +13,10 @@ export default class Lab extends Scene {
   touch;
   layers = {};
 
+  /** @type {Phaser.Physics.Arcade.Group} */
+  groupObjects;
+  isTouching = false;
+
   constructor(){
     super('Lab');
   }
@@ -34,6 +38,7 @@ export default class Lab extends Scene {
   create(){
     this.createMap()
     this.createLayers()
+    this.createObjects();
     this.createPlayer()
     this.createCamera()
     this.createColliders()
@@ -121,6 +126,38 @@ export default class Lab extends Scene {
     this.cameras.main.startFollow(this.player)
   }
 
+  createObjects() {
+    // Criar um grupo para os objetos
+    this.groupObjects = this.physics.add.group();
+
+    console.log(this.groupObjects)
+
+    const objects = this.map.createFromObjects("Objeto", {
+        name: "Placa"
+
+    });
+
+    console.log(objects)
+    // Tornando todos os objetos, Sprites com Physics (que possuem body)
+    this.physics.world.enable(objects);
+
+    for(let i = 0; i < objects.length; i++){
+        //Pegando o objeto atual
+        const obj = objects[i];
+        //Pegando as informações do Objeto definidas no Tiled
+        const prop = this.map.objects[0].objects[i];
+        console.log(prop)
+
+
+        obj.setDepth(this.layers.length + 1);
+        obj.setVisible(false);
+
+        this.groupObjects.add(obj);
+
+        console.log(obj);
+    }
+}
+
   createPlayer(){
     this.touch = new Touch(this, 16*8, 16*5)
     this.player = new Player(this, 16*8, 16*5, this.touch)
@@ -128,16 +165,38 @@ export default class Lab extends Scene {
   }
 
   createColliders(){
+    // Diferença COLIDER x OVERLAP
+    // COLLIDER: colide e impede a passagem
+    // Overlap: detecta a sobreposição dos elementos, não impede a passagem
+
+    // Criando colisão entre o player e as camadas de colisão do Tiled
     const layersNames = this.map.getTileLayerNames();
     for (let i = 0; i < layersNames.length; i++) {
       const name = layersNames[i];
       
       if(name.endsWith('Collision')){
         this.physics.add.collider(this.player, this.layers[name], this.Collided(), null, this)
-        //this.physics.overlap(this.player, this.layers[name], this.Collided, null, this);
-
-        //console.log(name, this.layers[name])
       }
+    }
+
+    //Criar colisão entre a "Maozinha" do Player e os objetos da camada de objetos da camada de Objetos
+    // Chama a função this.handleTouch toda vez que o this.touch entrar em contato com um objeto do this.groupObjects
+    this.physics.add.overlap(this.touch, this.groupObjects, this.handleTouch, undefined, this);
+  }
+
+  handleTouch(touch, object) {
+    if(this.isTouching && this.player.isAction){
+      return;
+    }
+
+    if (this.isTouching && !this.player.isAction){
+      this.isTouching = false;
+      return;
+    }
+
+    if(this.player.isAction) {
+      this.isTouching = true;
+      console.log("Estou tocando");
     }
   }
 
