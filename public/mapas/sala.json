@@ -533,6 +533,12 @@
                  "height":14,
                  "id":16,
                  "name":"Placa",
+                 "properties":[
+                        {
+                         "name":"texto",
+                         "type":"string",
+                         "value":"Celular"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -572,6 +578,12 @@
                  "height":14,
                  "id":19,
                  "name":"Placa",
+                 "properties":[
+                        {
+                         "name":"texto",
+                         "type":"string",
+                         "value":"Comida"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,

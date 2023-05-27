@@ -13,6 +13,9 @@ export default class Lab extends Scene {
   touch;
   layers = {};
 
+  textDialago = ""
+  telaDialago;
+
   /** @type {Phaser.Physics.Arcade.Group} */
   groupObjects;
   isTouching = false;
@@ -147,9 +150,9 @@ export default class Lab extends Scene {
 }
 
   createPlayer(){
-    this.touch = new Touch(this, 16*8, 16*5)
-    this.player = new Player(this, 16*8, 16*5, this.touch)
-    this.player.setDepth(2)    
+    this.touch = new Touch(this, 16*8, 16*5);
+    this.player = new Player(this, 16*8, 16*5, this.touch);
+    this.player.setDepth(2);        
   }
 
   createColliders(){
@@ -169,7 +172,7 @@ export default class Lab extends Scene {
   createLixeira(){
     //const lixeiraAmarela = this.add.sprite(184,48, 'Lixeira', 0) ;
     //const lixeiraAzul = this.add.sprite(200,48, 'Lixeira', 3) ;
-  }
+  };
 
   handleTouch(touch, object) {
     if(this.isTouching && this.player.isAction){
@@ -188,8 +191,11 @@ export default class Lab extends Scene {
         console.log("Estou tocando no Quadro", object);
       }
       else if(object.name == "Placa"){ // Interação com as placas
-        
-        console.log("Estou tocando no Placa", object);
+        if(object.prop[0].value == "Comida"){
+          this.dialago("Proibido comer");
+        } else if(object.prop[0].value == "Celular"){
+          this.dialago("Proibido celular");
+        }
       }
       else if(object.name == "Cadeira"){ // Interação com a cadeira
         console.log("Estou tocando no cadeira", object);
@@ -201,17 +207,52 @@ export default class Lab extends Scene {
           this.add.sprite(object.x, 48, 'Lixeira', 4);          
         }
       }
-      
-      //console.log("Estou tocando");
-      //console.log(object, "Estou tocando");
-      //console.log(touch, "Estou tocando");
     }
-  }
+  };
 
+  dialago(texto){
+    // Crie uma caixa de texto para exibir o conteúdo
+    this.telaDialago = this.add.graphics();
+    // Obtenha as dimensões da tela
+    const width = CONFIG.GAME_WIDTH;
+    const height = CONFIG.GAME_HEIGHT;
+
+    // Defina as dimensões da caixa de diálogo
+    const boxWidth = width * 0.6;
+    const boxHeight = height * 0.1;
+
+    // Calcule a posição da caixa de diálogo
+    const boxX = width / 2 - boxWidth / 2;
+    const boxY = height / 2 - boxHeight / 2;
+
+    // Crie uma caixa de texto para exibir o conteúdo
+    this.telaDialago.fillStyle(0x000000, 0.7);
+    this.telaDialago.fillRect(boxX, boxY, boxWidth, boxHeight);
+
+    const textStyle = {
+      fontFamily: 'Arial',
+      fontSize: '18px',
+      color: '#ffffff',
+      wordWrap: { width: boxWidth - 20, useAdvancedWrap: true }
+    };
+
+    const textX = boxX + 10;
+    const textY = boxY + 10;
+
+    this.textDialago = this.add.text(textX, textY, texto, textStyle);
+
+    // Quando mover o player
+    this.input.keyboard.on('keydown', (event) => {
+      if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        this.textDialago.setVisible(false);
+        this.telaDialago.setVisible(false);
+      }
+    });
+  };
   
   
 
   Collided(){
     console.log('Collided');
-  }
+  };
 }
