@@ -150,8 +150,8 @@ export default class Lab extends Scene {
 }
 
   createPlayer(){
-    this.touch = new Touch(this, 16*8, 16*5);
-    this.player = new Player(this, 16*8, 16*5, this.touch);
+    this.touch = new Touch(this, 16 * 8, 16 * 5);
+    this.player = new Player(this, 16 * 8, 16 * 5, this.touch);
     this.player.setDepth(2);        
   }
 
@@ -233,6 +233,7 @@ export default class Lab extends Scene {
       fontFamily: 'Arial',
       fontSize: '18px',
       color: '#ffffff',
+      aling: 'center',
       wordWrap: { width: boxWidth - 20, useAdvancedWrap: true }
     };
 
