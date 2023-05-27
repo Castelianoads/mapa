@@ -5207,10 +5207,18 @@
     <property name="local" value="corredor"/>
    </properties>
   </object>
-  <object id="13" name="Lixeira" x="226.667" y="39.3333" width="11.3333" height="14"/>
+  <object id="13" name="Lixeira" x="226.667" y="39.3333" width="11.3333" height="21.6667">
+   <properties>
+    <property name="cor" value="Laranja"/>
+   </properties>
+  </object>
   <object id="16" name="Placa" x="210" y="28" width="11.3333" height="14"/>
   <object id="17" name="Quadro" x="80.6667" y="24.3333" width="109" height="21.6667"/>
-  <object id="18" name="Lixeira" x="243.333" y="40" width="11.3333" height="14"/>
+  <object id="18" name="Lixeira" x="243.333" y="40" width="11.3333" height="22.3333">
+   <properties>
+    <property name="cor" value="Azul"/>
+   </properties>
+  </object>
   <object id="19" name="Placa" x="194" y="27.3333" width="11.3333" height="14"/>
  </objectgroup>
 </map>

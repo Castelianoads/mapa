@@ -22,26 +22,29 @@ export default class Lab extends Scene {
   }
 
   preload(){
-    // Carregar dados do mapa
     this.load.tilemapTiledJSON('tilemap-lab-info', 'mapas/sala.json')
 
-    // Carregar os tilessets do map (as imagens)
     this.load.image('tiles-office', 'mapas/tiles/tiles_office.png')
 
-    // Importando um spritesheet
     this.load.spritesheet('player', 'carlos.png', {
       frameWidth: CONFIG.TILE_SIZE,
       frameHeight: CONFIG.TILE_SIZE * 2
-    })
+    });
+
+    this.load.spritesheet('Lixeira', 'mapas/tiles/lixeiras_spritesheet.png', {
+      frameWidth: CONFIG.TILE_SIZE,
+      frameHeight: CONFIG.TILE_SIZE * 2
+    });
   }
 
   create(){
-    this.createMap()
-    this.createLayers()
+    this.createMap();
+    this.createLayers();
     this.createObjects();
-    this.createPlayer()
-    this.createCamera()
-    this.createColliders()
+    this.createPlayer();
+    this.createCamera();
+    this.createColliders();
+    this.createLixeira();
   }
 
   update(){
@@ -51,14 +54,11 @@ export default class Lab extends Scene {
 
   createMap(){
     this.map = this.make.tilemap({
-      key: 'tilemap-lab-info', // dados JSON
+      key: 'tilemap-lab-info',
       tileHeight: CONFIG.TILE_SIZE,
       tileWidth: CONFIG.TILE_SIZE
     })
 
-    // Fazendo a correspondencia entre as imagens usadas no TIled
-    // e as carregadas pelo Phaser
-    // addTilesetImage(nome da imagem no TIled, nome da imagem carregada no Phaser)
     this.map.addTilesetImage('tiles_office', 'tiles-office')
   }
 
@@ -74,17 +74,8 @@ export default class Lab extends Scene {
   }
 
   createLayers(){
-    // Pegando os tilessers
     const tilesOffice = this.map.getTileset('tiles_office') // Nome no tiles
     const layersNames = this.map.getTileLayerNames();
-
-    //console.log(this.tilesOffice.getTileAt());
-
-    // const prop = tilesOffice.getTileProperties(0)
-    // if (prop.hasOwnProperty('name')) {
-    //   const propValue = properties['name'];
-    //   console.log(propValue); // Exibe o valor da propriedade
-    // }
 
     for (let i = 0; i < layersNames.length; i++) {
       const name = layersNames[i];
@@ -127,14 +118,12 @@ export default class Lab extends Scene {
   }
 
   createObjects() {
-    // Criar um grupo para os objetos
     this.groupObjects = this.physics.add.group();
 
     console.log(this.groupObjects)
 
-    const objects = this.map.createFromObjects("Objeto", {
-        name: "Placa"
-
+    const objects = this.map.createFromObjects("Objeto", "Objeto", "Objeto", "Objeto", {
+      name: "Placa", name: "Quadro", name: "Lixeira", name: "Cadeira"
     });
 
     console.log(objects)
@@ -142,19 +131,18 @@ export default class Lab extends Scene {
     this.physics.world.enable(objects);
 
     for(let i = 0; i < objects.length; i++){
-        //Pegando o objeto atual
-        const obj = objects[i];
-        //Pegando as informações do Objeto definidas no Tiled
-        const prop = this.map.objects[0].objects[i];
-        console.log(prop)
+      //Pegando o objeto atual
+      const obj = objects[i];
+      //Pegando as informações do Objeto definidas no Tiled
+      const prop = this.map.objects[0].objects[i];
 
-
-        obj.setDepth(this.layers.length + 1);
-        obj.setVisible(false);
-
-        this.groupObjects.add(obj);
-
-        console.log(obj);
+      obj.setDepth(this.layers.length + 1);
+      obj.setVisible(false);
+      obj.prop = this.map.objects[0].objects[i].properties;
+      console.log(obj.prop);
+      this.groupObjects.add(obj);
+     
+      console.log(obj);
     }
 }
 
@@ -165,11 +153,6 @@ export default class Lab extends Scene {
   }
 
   createColliders(){
-    // Diferença COLIDER x OVERLAP
-    // COLLIDER: colide e impede a passagem
-    // Overlap: detecta a sobreposição dos elementos, não impede a passagem
-
-    // Criando colisão entre o player e as camadas de colisão do Tiled
     const layersNames = this.map.getTileLayerNames();
     for (let i = 0; i < layersNames.length; i++) {
       const name = layersNames[i];
@@ -179,9 +162,13 @@ export default class Lab extends Scene {
       }
     }
 
-    //Criar colisão entre a "Maozinha" do Player e os objetos da camada de objetos da camada de Objetos
-    // Chama a função this.handleTouch toda vez que o this.touch entrar em contato com um objeto do this.groupObjects
     this.physics.add.overlap(this.touch, this.groupObjects, this.handleTouch, undefined, this);
+  }
+
+  // Associar lixeira de acordo com sua cor
+  createLixeira(){
+    //const lixeiraAmarela = this.add.sprite(184,48, 'Lixeira', 0) ;
+    //const lixeiraAzul = this.add.sprite(200,48, 'Lixeira', 3) ;
   }
 
   handleTouch(touch, object) {
@@ -189,6 +176,7 @@ export default class Lab extends Scene {
       return;
     }
 
+    // Para de tocar
     if (this.isTouching && !this.player.isAction){
       this.isTouching = false;
       return;
@@ -196,9 +184,32 @@ export default class Lab extends Scene {
 
     if(this.player.isAction) {
       this.isTouching = true;
-      console.log("Estou tocando");
+      if(object.name == "Quadro"){ // Interação com o quadro
+        console.log("Estou tocando no Quadro", object);
+      }
+      else if(object.name == "Placa"){ // Interação com as placas
+        
+        console.log("Estou tocando no Placa", object);
+      }
+      else if(object.name == "Cadeira"){ // Interação com a cadeira
+        console.log("Estou tocando no cadeira", object);
+      }
+      else if(object.name == "Lixeira"){ // Interação com o lixeira 
+        if(object.prop[0].value == "Laranja"){
+          this.add.sprite(object.x, 48, 'Lixeira', 2);    
+        } else if (object.prop[0].value == "Azul"){
+          this.add.sprite(object.x, 48, 'Lixeira', 4);          
+        }
+      }
+      
+      //console.log("Estou tocando");
+      //console.log(object, "Estou tocando");
+      //console.log(touch, "Estou tocando");
     }
   }
+
+  
+  
 
   Collided(){
     console.log('Collided');

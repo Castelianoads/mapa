@@ -5,6 +5,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
   cursors;
 
   touch;
+  isAction;
 
   constructor(scene, x, y, touch){
     super(scene, x, y, 'player')
@@ -81,6 +82,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Fazer o touch seguir o player
     let tX, tY;
     let distance = 16;
+    
     switch(this.direction){
       case 'down':
         tX = 0;
@@ -98,7 +100,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
         tX = - distance / 2;
         tY = CONFIG.TILE_SIZE / 2;
         break
+      case 'space':
+        tX = 0;
+        tY = 0;
+        break;
     }
+
     this.touch.setPosition(this.x + tX + CONFIG.TILE_SIZE / 2, this.y + tY)
   }
 
