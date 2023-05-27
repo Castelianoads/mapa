@@ -47,7 +47,6 @@ export default class Lab extends Scene {
     this.createPlayer();
     this.createCamera();
     this.createColliders();
-    this.createLixeira();
   }
 
   update(){
@@ -168,12 +167,7 @@ export default class Lab extends Scene {
     this.physics.add.overlap(this.touch, this.groupObjects, this.handleTouch, undefined, this);
   }
 
-  // Associar lixeira de acordo com sua cor
-  createLixeira(){
-    //const lixeiraAmarela = this.add.sprite(184,48, 'Lixeira', 0) ;
-    //const lixeiraAzul = this.add.sprite(200,48, 'Lixeira', 3) ;
-  };
-
+  // Refatorar
   handleTouch(touch, object) {
     if(this.isTouching && this.player.isAction){
       return;
@@ -202,30 +196,46 @@ export default class Lab extends Scene {
       }
       else if(object.name == "Lixeira"){ // Interação com o lixeira 
         if(object.prop[0].value == "Laranja"){
-          this.add.sprite(object.x, 48, 'Lixeira', 2);    
+          this.atualizarLixeira('Laranja', object.x, 2);
+          //this.add.sprite(object.x, 48, 'Lixeira', 2);    
         } else if (object.prop[0].value == "Azul"){
-          this.add.sprite(object.x, 48, 'Lixeira', 4);          
+          this.atualizarLixeira('Azul', object.x, 4);
+          //this.add.sprite(object.x, 48, 'Lixeira', 4);          
         }
       }
     }
   };
 
+  // Refatorar
+  atualizarLixeira(corLixeira, objeto, frame){
+    const lixeira = this.add.sprite(objeto, 48, 'Lixeira', frame); 
+
+    if(corLixeira == 'Laranja'){
+      this.input.keyboard.on('keydown', (event) => {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          lixeira.setTexture('Lixeira', 0);
+        }
+      });
+    } else if(corLixeira == 'Azul'){
+      this.input.keyboard.on('keydown', (event) => {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          lixeira.setTexture('Lixeira', 3);
+        }
+      });
+    }
+  }
+
   dialago(texto){
-    // Crie uma caixa de texto para exibir o conteúdo
     this.telaDialago = this.add.graphics();
-    // Obtenha as dimensões da tela
     const width = CONFIG.GAME_WIDTH;
     const height = CONFIG.GAME_HEIGHT;
 
-    // Defina as dimensões da caixa de diálogo
     const boxWidth = width * 0.6;
     const boxHeight = height * 0.1;
 
-    // Calcule a posição da caixa de diálogo
     const boxX = width / 2 - boxWidth / 2;
     const boxY = height / 2 - boxHeight / 2;
 
-    // Crie uma caixa de texto para exibir o conteúdo
     this.telaDialago.fillStyle(0x000000, 0.7);
     this.telaDialago.fillRect(boxX, boxY, boxWidth, boxHeight);
 
