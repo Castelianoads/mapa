@@ -73,7 +73,7 @@ export default class Hud extends Phaser.GameObjects.Container {
     this.isDialogBlocked = true;
     console.log('Entrou show dialog')
 
-    //Verificando se está fora da tela
+    // Verificando se está fora da tela
     if (this.dialog.y > this.dialogPositionShow) {
       console.log('fora da tela')
       this.scene.add.tween({
@@ -82,15 +82,13 @@ export default class Hud extends Phaser.GameObjects.Container {
         y: this.dialogPositionShow,
         ease: Phaser.Math.Easing.Bounce.Out,
         onComplete: () => {
-          console.log('Entrou show dialog - complete')
-
           this.showText(text);
+          console.log('Entrou show dialog - complete')  
         }
       });
     } else {
-      console.log('Entrou show dialog - else')
-
       this.showText();
+      console.log('Entrou show dialog - else')
     }
   }
 
@@ -101,16 +99,14 @@ export default class Hud extends Phaser.GameObjects.Container {
     //Fazer o dialog aparecer igual o dialog do megamam
     let i = 0;
     this.scene.time.addEvent({
-      repeat: text.length - 2,
+      repeat: text.length - 1,
       delay: 20,
       callback: () => { 
         // Entrou 88 vezes
         console.log(text[i])
-
         this.dialogText.text += text[i++];
-        if(this.dialogText.text.length >= text.length){
+        if(this.dialogText.text.length == text.length){
           console.log('Entrou metidi showText - callback e isdialago = false')
-
           this.isDialogBlocked = false;
           //this.hideDialog()
         }

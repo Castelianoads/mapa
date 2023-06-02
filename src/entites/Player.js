@@ -34,14 +34,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
 
     this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this)
 
-    this.play('idle-right');
-    this.play('idle-up');
-    this.play('idle-left');
-    this.play('idle-down');
-    this.play('walk-right');
-    this.play('walk-up');
-    this.play('walk-left');
-    this.play('walk-down');
+    // this.play('idle-right');
+    // this.play('idle-up');
+    // this.play('idle-left');
+    // this.play('idle-down');
+    // this.play('walk-right');
+    // this.play('walk-up');
+    // this.play('walk-left');
+    // this.play('walk-down');
     this.play('sit-left');
     this.play('sit-right');
   }
@@ -223,25 +223,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Gift
     this.anims.create({
       key: 'gift-right',
-      frames: this.anims.generateFrameNumbers('player', {start: 136,end:145 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 136, end: 145 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'gift-up',
-      frames: this.anims.generateFrameNumbers('player', {start: 146,end:155 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 146, end: 155 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'gift-left',
-      frames: this.anims.generateFrameNumbers('player', {start: 156,end:165 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 156, end: 165 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'gift-down',
-      frames: this.anims.generateFrameNumbers('player', {start: 166,end:175 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 166, end: 175 }),
       frameRate: this.frameRate,
       repeat: -1
     });
@@ -249,25 +249,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Punch
     this.anims.create({
       key: 'punch-right',
-      frames: this.anims.generateFrameNumbers('player', {start: 176,end:181 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 176, end: 181 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'punch-up',
-      frames: this.anims.generateFrameNumbers('player', {start: 182,end:187 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 182, end: 187 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'punch-left',
-      frames: this.anims.generateFrameNumbers('player', {start: 188,end:193 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 188, end: 193 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'punch-down',
-      frames: this.anims.generateFrameNumbers('player', {start: 194,end:199 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 194, end: 199 }),
       frameRate: this.frameRate,
       repeat: -1
     });
@@ -275,13 +275,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Gun
     this.anims.create({
       key: 'gun-right',
-      frames: this.anims.generateFrameNumbers('player', {start: 200,end:203 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 200, end: 203 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'gun-up',
-      frames: this.anims.generateFrameNumbers('player', {start: 204,end:207 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 204, end: 207 }),
       frameRate: this.frameRate,
       repeat: -1
     });

@@ -12,6 +12,7 @@ export default class Lab extends Scene {
   playerCollision = [];
   touch;
   layers = {};
+  cursors;
 
   textDialago = ""
   telaDialago;
@@ -19,6 +20,8 @@ export default class Lab extends Scene {
   /** @type {Phaser.Physics.Arcade.Group} */
   groupObjects;
   isTouching = false;
+
+  taSentado = false;
 
   constructor(){
     super('Lab');
@@ -50,7 +53,8 @@ export default class Lab extends Scene {
   }
 
   update(){
-    
+
+  
   }
 
 
@@ -156,6 +160,7 @@ export default class Lab extends Scene {
 
   // Refatorar
   handleTouch(touch, object) {
+    //const { space } = this.cursors;
     if(this.isTouching && this.player.isAction){
       return;
     }
@@ -179,10 +184,16 @@ export default class Lab extends Scene {
         }
       }
       else if(object.name == "Cadeira"){ // Interação com a cadeira
+        if(!this.taSentado){
+          this.sentarNaCadeira(object);
+        } else{
+          this.sairDaCadeira();
+        }
         console.log("Estou tocando no cadeira", object);
-        this.player.setImmovable(true);
-        this.player.play('sit-right');
-       
+          
+          
+          
+        
       }
       else if(object.name == "Lixeira"){ // Interação com o lixeira 
         if(object.prop[0].value == "Laranja"){
@@ -251,7 +262,22 @@ export default class Lab extends Scene {
     });
   };
   
-  
+  sentarNaCadeira(object) {
+    this.taSentado = true;
+    // this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    // this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+    // this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+    // this.input.keyboard.removeKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    const { x, y } = object.getCenter();
+    this.player.setPosition(x - 9, y - 9);
+    this.player.play('sit-right', true);
+    this.player.direction = 'up';
+  }
+
+  sairDaCadeira() {
+    console.log("espaço");
+    this.taSentado = false;
+  }
 
   Collided(){
     console.log('Collided');
