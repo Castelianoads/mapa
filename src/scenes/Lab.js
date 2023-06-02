@@ -64,16 +64,7 @@ export default class Lab extends Scene {
     this.map.addTilesetImage('tiles_office', 'tiles-office')
   }
 
-  createLayersManual(){
-    // Pegando os tilessers
-    const tilesOffice = this.map.getTileset('tiles_office') // Nome no tiles
-
-    // Inserir os layers
-    this.map.createLayer('abaixo', [tilesOffice], 0, 0)
-    this.map.createLayer('abaixo 1', [tilesOffice], 0, 0)
-    this.map.createLayer('abaixo 3', [tilesOffice], 0, 0)
-    this.map.createLayer('acima', [tilesOffice], 0, 0)
-  }
+ 
 
   createLayers(){
     const tilesOffice = this.map.getTileset('tiles_office') // Nome no tiles
@@ -93,7 +84,7 @@ export default class Lab extends Scene {
 
         // Adiciona a função de callback para cada tile colidível
         this.layers[name].setTileIndexCallback(0, this, (sprite, tile) => {
-            //console.log(`Collided with ${tile.properties.object}, ${sprite}`);
+            console.log(`Collided with ${tile.properties.object}, ${sprite}`);
           }
         );
 
@@ -129,29 +120,25 @@ export default class Lab extends Scene {
     });
 
     console.log(objects)
-    // Tornando todos os objetos, Sprites com Physics (que possuem body)
     this.physics.world.enable(objects);
 
     for(let i = 0; i < objects.length; i++){
-      //Pegando o objeto atual
       const obj = objects[i];
-      //Pegando as informações do Objeto definidas no Tiled
-      const prop = this.map.objects[0].objects[i];
 
       obj.setDepth(this.layers.length + 1);
       obj.setVisible(false);
       obj.prop = this.map.objects[0].objects[i].properties;
-      console.log(obj.prop);
+      //console.log(obj.prop);
       this.groupObjects.add(obj);
      
-      console.log(obj);
+      //console.log(obj);
     }
 }
 
   createPlayer(){
     this.touch = new Touch(this, 16 * 8, 16 * 5);
     this.player = new Player(this, 16 * 8, 16 * 5, this.touch);
-    this.player.setDepth(2);        
+    this.player.setDepth(19);        
   }
 
   createColliders(){
@@ -193,6 +180,9 @@ export default class Lab extends Scene {
       }
       else if(object.name == "Cadeira"){ // Interação com a cadeira
         console.log("Estou tocando no cadeira", object);
+        this.player.setImmovable(true);
+        this.player.play('sit-right');
+       
       }
       else if(object.name == "Lixeira"){ // Interação com o lixeira 
         if(object.prop[0].value == "Laranja"){
@@ -218,7 +208,7 @@ export default class Lab extends Scene {
       });
     } else if(corLixeira == 'Azul'){
       this.input.keyboard.on('keydown', (event) => {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'ArrowRight' ) {
           lixeira.setTexture('Lixeira', 3);
         }
       });

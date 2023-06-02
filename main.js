@@ -9,7 +9,7 @@ const config = {
   with: CONFIG.GAME_WIDTH,
   height: CONFIG.GAME_HEIGHT,
   type: AUTO,
-  scene: [Lab],
+  scene: [Lab2],
   physics: {
     default: 'arcade',
     arcade: {

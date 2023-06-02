@@ -13,7 +13,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     this.touch = touch
 
     scene.add.existing(this) // Criando a imagem que o jogador ve
-    scene.physics.add.existing(this) // criando o Body da FIsica
+    scene.physics.add.existing(this) // criando o Body da Fisica
 
     this.init()
   }
@@ -42,6 +42,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     this.play('walk-up');
     this.play('walk-left');
     this.play('walk-down');
+    this.play('sit-left');
+    this.play('sit-right');
   }
   
   update(){
@@ -165,13 +167,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Sit
     this.anims.create({
       key: 'sit-right',
-      frames: this.anims.generateFrameNumbers('player', {start: 52,end:57 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 52, end: 57 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'sit-left',
-      frames: this.anims.generateFrameNumbers('player', {start: 58,end:63 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 58, end: 63 }),
       frameRate: this.frameRate,
       repeat: -1
     });
@@ -179,7 +181,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Phone
     this.anims.create({
       key: 'phone',
-      frames: this.anims.generateFrameNumbers('player', {start: 64,end:75 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 64, end: 75 }),
       frameRate: this.frameRate,
       repeat: -1
     });
@@ -187,7 +189,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Book
     this.anims.create({
       key: 'book',
-      frames: this.anims.generateFrameNumbers('player', {start: 76,end:87 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 76,end:87 }),
       frameRate: this.frameRate,
       repeat: -1
      });
@@ -195,25 +197,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Cath
     this.anims.create({
       key: 'catch-right',
-      frames: this.anims.generateFrameNumbers('player', {start: 88,end:99 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 88, end: 99 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'catch-up',
-      frames: this.anims.generateFrameNumbers('player', {start: 100,end:111 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 100, end: 111 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'catch-left',
-      frames: this.anims.generateFrameNumbers('player', {start: 112,end:123 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 112, end: 123 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'catch-down',
-      frames: this.anims.generateFrameNumbers('player', {start: 124,end:135 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 124, end: 135 }),
       frameRate: this.frameRate,
       repeat: -1
     });
@@ -285,13 +287,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     });
     this.anims.create({
       key: 'gun-left',
-      frames: this.anims.generateFrameNumbers('player', {start: 208,end:211 }),
+      frames: this.anims.generateFrameNumbers('player', {start: 208, end: 211 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'gun-down',
-      frames: this.anims.generateFrameNumbers('player', {start: 212,end:215 }),
+      frames: this.anims.generateFrameNumbers('player', {start: 212, end: 215 }),
       frameRate: this.frameRate,
       repeat: -1
     });
@@ -299,25 +301,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
     // Damage
     this.anims.create({
       key: 'fire-right',
-      frames: this.anims.generateFrameNumbers('player', {start: 228,end:230 }),
+      frames: this.anims.generateFrameNumbers('player', {start: 228, end: 230 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
-      key: 'fire-up',
-      frames: this.anims.generateFrameNumbers('player', {start: 231,end:233 }),
+      key: 'fire-up', 
+      frames: this.anims.generateFrameNumbers('player', { start: 231, end: 233 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'fire-left',
-      frames: this.anims.generateFrameNumbers('player', {start: 234,end:236 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 234, end: 236 }),
       frameRate: this.frameRate,
       repeat: -1
     });
     this.anims.create({
       key: 'fire-down',
-      frames: this.anims.generateFrameNumbers('player', {start: 238,end:240 }),
+      frames: this.anims.generateFrameNumbers('player', { start: 238, end: 240 }),
       frameRate: this.frameRate,
       repeat: -1
     });

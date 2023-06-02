@@ -1,12 +1,20 @@
 import { Scene } from "phaser"
 import { CONFIG } from "../config";
+import Hud from "../component/Hud";
 
 // 9-sline
 
 export default class Lab2 extends Scene {
   /** @type {Phaser.Tilemaps.tilemap} */
-  map;;
+  map;
   layers = {};
+
+  hud;
+
+  spaceDown = false;
+
+  /**@type {Phaser.Type.Input.Keyboard.Cursors} */
+  cursors;
 
   /** @type {Phaser.GameObjects.Container} */
   dialog;
@@ -37,16 +45,30 @@ export default class Lab2 extends Scene {
   }
 
   create(){
+    this.cursors = this.input.keyboard.createCursorKeys();
     this.createMap();
     this.createLayers();
-    this.createDialog();
-    this.showDialog("Trabalho de jogos digitais Carlos Eduardo Casteliano de Paula");
+    
+    this.hud = new Hud(this, 0, 0);
 
   }
 
   update(){
+    const { space } = this.cursors;
 
-
+    if (space.isDown && !this.spaceDown) {
+      this.spaceDown = true;
+      this.hud.showDialog('Este é o texto que deve aparecer vamoles vamoles aribaaaaaaaaaaa diolo no conosso senhor!');
+      if(this.isDialogBlocked == false){
+        this.hud.hideDialog()
+        console.log("fgrgthf"); 
+      }
+         
+    } else if (!space.isDown && this.spaceDown){
+      this.spaceDown = true;
+      //setTimeout(() => this.hud.hideDialog(), 5000)
+    }
+    
   }
 
 
@@ -69,78 +91,35 @@ export default class Lab2 extends Scene {
     }
   }
 
-  createDialog(){
-    this.dialog = this.add.container(0, 0).setDepth(10);
-
-    const tileSize = CONFIG.TILE_SIZE
-    const largura = CONFIG.GAME_WIDTH - (2 * tileSize);
-    const altura = 4 * tileSize;
-
-    this.dialogPositionShow = CONFIG.GAME_HEIGHT - altura - tileSize * 2;
-    this.dialogPositionHide = CONFIG.GAME_HEIGHT + tileSize;
-
-    this.dialog.add(
-      [
-        this.add.image(0, 0, 'hud', 'dialog_topleft'),
-        this.add.image(16, 0, 'hud', 'dialog_top').setDisplaySize(largura, tileSize),
-        this.add.image(largura + tileSize, 0, 'hud', 'dialog_topright'),
-        
-
-        this.add.image(0, 16, 'hud', 'dialog_left').setDisplaySize(tileSize, altura),
-        this.add.image(16, 16, 'hud', 'dialog_center').setDisplaySize(largura, altura),
-        this.add.image(largura + tileSize, 16, 'hud', 'dialog_right').setDisplaySize(tileSize, altura),
-
-        this.add.image(0, altura + tileSize, 'hud', 'dialog_bottomleft'),
-        this.add.image(16, altura + tileSize, 'hud', 'dialog_bottom').setDisplaySize(largura, tileSize),
-        this.add.image(largura + tileSize, altura + tileSize, 'hud', 'dialog_bottomright'),
-      ]
-    )
+  // showDialog(text){
+  //   this.dialogText.text = ''
     
-      this.dialog.setPosition(0, this.dialogPositionHide)
+  //   // Verifica se esta fora da tela
+  //   if(this.dialog.y > this.dialogPositionShow){
+  //     this.add.tween({
+  //       targets: this.dialog,
+  //       duration: 400,
+  //       y: this.dialogPositionShow,
+  //       ease: Phaser.Math.Easing.Back.Out,
+  //       onComplete: () => {
+  //         this.showText(text)
+  //       }
+  //     });
+  //   } else {
+  //     this.showText(text)
+  //   }
+  // }
 
-      const style = {
-        fontFamily : 'Verdana',
-        fontSize: 12,
-        color: '#6b5052',
-        maxLines: 3,
-        wordWrap : { width: largura }
-      }
+  // showText(text){
+  //   let i = 0;
 
-      this.dialogText = this.add.text(tileSize, tileSize, "Helo word", style)
-      this.dialog.add(this.dialogText)
-  }
-
-  showDialog(text){
-    this.dialogText.text = ''
-    
-    // Verifica se esta fora da tela
-    if(this.dialog.y > this.dialogPositionShow){
-      this.add.tween({
-        targets: this.dialog,
-        duration: 400,
-        y: this.dialogPositionShow,
-        ease: Phaser.Math.Easing.Back.Out,
-        onComplete: () => {
-          this.showText(text)
-        }
-      });
-    } else {
-      this.showText(text)
-    }
-
-
-  }
-
-  showText(text){
-    let i = 0;
-
-    this.time.addEvent({
-      repeat: text.length - 1,
-      delay: 25,
-      callback: () => {
-        this.dialogText.text += text[i++]
-      }
-    })
-  }
+  //   this.time.addEvent({
+  //     repeat: text.length - 1,
+  //     delay: 25,
+  //     callback: () => {
+  //       this.dialogText.text += text[i++]
+  //     }
+  //   })
+  // }
 
 }
