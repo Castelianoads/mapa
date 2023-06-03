@@ -9,22 +9,19 @@ export default class Lab2 extends Scene {
   map;
   layers = {};
 
-  hud;
+  
 
   spaceDown = false;
-
   /**@type {Phaser.Type.Input.Keyboard.Cursors} */
   cursors;
 
+  hud;
   /** @type {Phaser.GameObjects.Container} */
   dialog;
-
   /** @type {Phaser.GameObjects.Text} */
   dialogText;
-
   /** @type {Phaser.GameObjects.Sprite} */
   dialogNext;
-
   dialogPositionShow;
   dialogPositionHide;
 
@@ -58,7 +55,7 @@ export default class Lab2 extends Scene {
 
     if (space.isDown && !this.spaceDown) {
       this.spaceDown = true;
-      this.hud.showDialog('Este é o texto que deve aparecer vamoles vamoles aribaaaaaaaaaaa diolo no conosso senhor!');
+      this.hud.showDialog('Esse testo deve ser grande, Analise e desenvolvimento de sistemas - Introdução a jogos');
       if(this.isDialogBlocked == false){
         this.hud.hideDialog()
         console.log("fgrgthf"); 
@@ -68,7 +65,6 @@ export default class Lab2 extends Scene {
       this.spaceDown = true;
       //setTimeout(() => this.hud.hideDialog(), 5000)
     }
-    
   }
 
 

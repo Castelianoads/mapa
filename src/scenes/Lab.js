@@ -1,7 +1,8 @@
 import { Scene } from "phaser";
 import { CONFIG } from "../config";
-import Player from "../entites/Player"
-import Touch from "../entites/Touch"
+import Player from "../entites/Player";
+import Touch from "../entites/Touch";
+import Hud from "../component/Hud";
 
 export default class Lab extends Scene {
   /**@type {Phaser.Tilemaps.Tilemap} */
@@ -23,6 +24,18 @@ export default class Lab extends Scene {
 
   taSentado = false;
 
+  hud;
+  /** @type {Phaser.GameObjects.Container} */
+  dialog;
+  /** @type {Phaser.GameObjects.Text} */
+  dialogText;
+  /** @type {Phaser.GameObjects.Sprite} */
+  dialogNext;
+  dialogPositionShow;
+  dialogPositionHide;
+  spaceDown = false;
+  cursors;
+
   constructor(){
     super('Lab');
   }
@@ -31,6 +44,7 @@ export default class Lab extends Scene {
     this.load.tilemapTiledJSON('tilemap-lab-info', 'mapas/sala.json')
 
     this.load.image('tiles-office', 'mapas/tiles/tiles_office.png')
+    this.load.atlas('hud', 'hud.png', 'hud.json')
 
     this.load.spritesheet('player', 'carlos.png', {
       frameWidth: CONFIG.TILE_SIZE,
@@ -50,13 +64,13 @@ export default class Lab extends Scene {
     this.createPlayer();
     this.createCamera();
     this.createColliders();
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.hud = new Hud(this, 0, 0);
   }
 
   update(){
 
-  
   }
-
 
   createMap(){
     this.map = this.make.tilemap({
@@ -64,7 +78,6 @@ export default class Lab extends Scene {
       tileHeight: CONFIG.TILE_SIZE,
       tileWidth: CONFIG.TILE_SIZE
     })
-
     this.map.addTilesetImage('tiles_office', 'tiles-office')
   }
 
@@ -77,16 +90,11 @@ export default class Lab extends Scene {
     for (let i = 0; i < layersNames.length; i++) {
       const name = layersNames[i];
       this.layers[name] = this.map.createLayer(name, [tilesOffice], 0, 0)
-      // Define a profundidade de cada camada
+      // Define a profundidade de cada camada (Layer)
       this.layers[name].setDepth(i);
 
-      console.log(this.layers);
-
-      // Verifica se o layer possui colisao
       if(name.endsWith('Collision')){
         this.layers[name].setCollisionByProperty({ collide: true })
-
-        // Adiciona a função de callback para cada tile colidível
         this.layers[name].setTileIndexCallback(0, this, (sprite, tile) => {
             console.log(`Collided with ${tile.properties.object}, ${sprite}`);
           }
@@ -128,14 +136,10 @@ export default class Lab extends Scene {
 
     for(let i = 0; i < objects.length; i++){
       const obj = objects[i];
-
       obj.setDepth(this.layers.length + 1);
       obj.setVisible(false);
       obj.prop = this.map.objects[0].objects[i].properties;
-      //console.log(obj.prop);
-      this.groupObjects.add(obj);
-     
-      //console.log(obj);
+      this.groupObjects.add(obj);     
     }
 }
 
@@ -154,18 +158,15 @@ export default class Lab extends Scene {
         this.physics.add.collider(this.player, this.layers[name], this.Collided(), null, this)
       }
     }
-
     this.physics.add.overlap(this.touch, this.groupObjects, this.handleTouch, undefined, this);
   }
 
   // Refatorar
   handleTouch(touch, object) {
-    //const { space } = this.cursors;
     if(this.isTouching && this.player.isAction){
       return;
     }
 
-    // Para de tocar
     if (this.isTouching && !this.player.isAction){
       this.isTouching = false;
       return;
@@ -173,35 +174,42 @@ export default class Lab extends Scene {
 
     if(this.player.isAction) {
       this.isTouching = true;
-      if(object.name == "Quadro"){ // Interação com o quadro
+      if(object.name == "Quadro"){ 
         console.log("Estou tocando no Quadro", object);
+        const { space } = this.cursors;
+
+        if (space.isDown && !this.spaceDown) {
+          this.spaceDown = true;
+          this.hud.showDialog('Carlos Eduardo Casteliano, Analise e desenvolvimento de sistemas - Introdução a jogos');
+          if(this.isDialogBlocked == false){
+            this.hud.hideDialog()
+            console.log("fgrgthf"); 
+          }
+
+        } else if (!space.isDown && this.spaceDown){
+          this.spaceDown = true;
+          //setTimeout(() => this.hud.hideDialog(), 5000)
+        }
       }
-      else if(object.name == "Placa"){ // Interação com as placas
+      else if(object.name == "Placa"){ 
         if(object.prop[0].value == "Comida"){
           this.dialago("Proibido comer");
         } else if(object.prop[0].value == "Celular"){
           this.dialago("Proibido celular");
         }
       }
-      else if(object.name == "Cadeira"){ // Interação com a cadeira
+      else if(object.name == "Cadeira"){ 
         if(!this.taSentado){
           this.sentarNaCadeira(object);
         } else{
           this.sairDaCadeira();
         }
-        console.log("Estou tocando no cadeira", object);
-          
-          
-          
-        
       }
-      else if(object.name == "Lixeira"){ // Interação com o lixeira 
+      else if(object.name == "Lixeira"){ 
         if(object.prop[0].value == "Laranja"){
           this.atualizarLixeira('Laranja', object.x, 2);
-          //this.add.sprite(object.x, 48, 'Lixeira', 2);    
         } else if (object.prop[0].value == "Azul"){
           this.atualizarLixeira('Azul', object.x, 4);
-          //this.add.sprite(object.x, 48, 'Lixeira', 4);          
         }
       }
     }
